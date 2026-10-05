@@ -1,134 +1,597 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Website Delta</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .container {
-            background: white;
-            padding: 3rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-            text-align: center;
-        }
-        
-        h1 {
-            color: #667eea;
-            margin-bottom: 1rem;
-            font-size: 2.5rem;
-        }
-        
-        p {
-            color: #666;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-        }
-        
-        .features {
-            text-align: left;
-            margin: 2rem 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-        
-        .feature {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 5px;
-            border-left: 4px solid #667eea;
-        }
-        
-        .feature h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-            font-size: 1rem;
-        }
-        
-        .feature p {
-            font-size: 0.9rem;
-            margin-bottom: 0;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.75rem 2rem;
-            border-radius: 5px;
-            text-decoration: none;
-            margin: 0.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-        
-        footer {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #eee;
-            color: #999;
-            font-size: 0.9rem;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>war.ai — Defend the Information Battlefield</title>
+<meta name="description" content="war.ai provides intelligence, governance, and defensive operations for the age of agentic influence, synthetic identity, and machine-speed information threats.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#08090c;
+    --surface:#0d0f14;
+    --surface-2:#11141b;
+    --border:rgba(255,255,255,.08);
+    --border-strong:rgba(255,255,255,.14);
+    --text:#f2f4f7;
+    --muted:#9aa3b2;
+    --faint:#5d6675;
+    --accent:#e5484d;
+    --accent-soft:rgba(229,72,77,.12);
+    --accent-border:rgba(229,72,77,.35);
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* ---------- top bar ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(8,9,12,.82);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{font-weight:800;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none}
+  .brand em{font-style:normal;color:var(--accent)}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a.nav-item{
+    text-decoration:none;color:var(--muted);font-size:.82rem;font-weight:500;
+    letter-spacing:.04em;transition:color .2s;
+  }
+  .nav-links a.nav-item:hover{color:var(--text)}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:13px 26px;border-radius:3px;
+    font-weight:600;font-size:.9rem;letter-spacing:.02em;text-decoration:none;
+    transition:transform .2s,box-shadow .2s,background .2s;
+    cursor:pointer;border:1px solid transparent;
+  }
+  .btn-accent{background:var(--accent);color:#fff}
+  .btn-accent:hover{background:#f2555a;transform:translateY(-1px);box-shadow:0 8px 28px rgba(229,72,77,.35)}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--border-strong)}
+  .btn-ghost:hover{border-color:var(--text);transform:translateY(-1px)}
+  .btn-sm{padding:10px 18px;font-size:.8rem}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;min-height:100vh;display:flex;align-items:center;
+    padding:140px 0 90px;overflow:hidden;
+  }
+  #net{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+  .hero::after{
+    content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(ellipse 90% 70% at 50% 40%,transparent 30%,rgba(8,9,12,.75) 100%);
+  }
+  .hero-inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:0 28px;width:100%}
+  .kicker{
+    font-family:var(--mono);font-size:.75rem;letter-spacing:.28em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:26px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .kicker::before{content:'';width:34px;height:1px;background:var(--accent);display:inline-block}
+  .hero h1{
+    font-size:clamp(2.6rem,6.4vw,5.2rem);
+    font-weight:800;letter-spacing:-.035em;line-height:1.04;
+    max-width:16ch;margin-bottom:28px;
+  }
+  .hero h1 .strike{color:var(--accent)}
+  .hero .sub{
+    font-size:clamp(1.05rem,1.6vw,1.3rem);color:var(--muted);
+    max-width:56ch;margin-bottom:44px;font-weight:400;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:70px}
+  .hero-meta{
+    display:flex;gap:0;border-top:1px solid var(--border);
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--faint);
+    text-transform:uppercase;flex-wrap:wrap;
+  }
+  .hero-meta div{padding:18px 34px 0 0;margin-right:34px}
+  .hero-meta div+div{border-left:1px solid var(--border);padding-left:34px}
+  .hero-meta strong{display:block;color:var(--text);font-size:.85rem;letter-spacing:.06em;margin-bottom:4px}
+
+  /* ---------- sections ---------- */
+  section{padding:110px 0;position:relative}
+  .sec-label{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;
+    color:var(--accent);text-transform:uppercase;margin-bottom:22px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .sec-label::before{content:'';width:34px;height:1px;background:var(--accent)}
+  h2{
+    font-size:clamp(1.9rem,3.6vw,3rem);font-weight:800;
+    letter-spacing:-.03em;line-height:1.12;margin-bottom:20px;max-width:22ch;
+  }
+  .lede{color:var(--muted);font-size:1.1rem;max-width:64ch;margin-bottom:60px}
+  .lede strong{color:var(--text);font-weight:600}
+
+  /* ---------- shift strip ---------- */
+  .shift{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .shift-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .shift h2 .dim{color:var(--faint)}
+  .cap-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--border)}
+  .cap-list li{
+    background:var(--surface);padding:20px 22px;font-size:.92rem;font-weight:500;
+    display:flex;gap:12px;align-items:baseline;
+  }
+  .cap-list li span{font-family:var(--mono);color:var(--accent);font-size:.72rem;flex-shrink:0}
+
+  /* ---------- ops grid ---------- */
+  .ops-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+  .op{background:var(--bg);padding:34px 28px;transition:background .25s}
+  .op:hover{background:var(--surface-2)}
+  .op .n{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:.2em;margin-bottom:16px}
+  .op h3{font-size:1.02rem;font-weight:700;letter-spacing:-.01em;margin-bottom:12px}
+  .op p{font-size:.87rem;color:var(--muted);line-height:1.65}
+
+  /* ---------- questions ---------- */
+  .questions{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .q-list{list-style:none;max-width:860px}
+  .q-list li{
+    padding:24px 0;border-bottom:1px solid var(--border);
+    font-size:clamp(1.05rem,1.8vw,1.35rem);font-weight:600;letter-spacing:-.015em;
+    display:flex;gap:22px;align-items:baseline;
+  }
+  .q-list li:first-child{border-top:1px solid var(--border)}
+  .q-list li::before{
+    content:'Q';font-family:var(--mono);font-size:.7rem;color:var(--accent);
+    border:1px solid var(--accent-border);border-radius:2px;padding:3px 7px;flex-shrink:0;
+    letter-spacing:.1em;
+  }
+
+  /* ---------- buyers ---------- */
+  .buyer-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .buyer{
+    background:var(--surface);border:1px solid var(--border);border-radius:4px;
+    padding:44px 40px;position:relative;overflow:hidden;
+    transition:border-color .25s,transform .25s;
+  }
+  .buyer:hover{border-color:var(--accent-border);transform:translateY(-3px)}
+  .buyer::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,var(--accent),transparent 70%);
+    opacity:0;transition:opacity .25s;
+  }
+  .buyer:hover::before{opacity:1}
+  .buyer .num{font-family:var(--mono);font-size:.72rem;letter-spacing:.24em;color:var(--faint);margin-bottom:18px}
+  .buyer h3{font-size:1.35rem;font-weight:700;letter-spacing:-.02em;margin-bottom:8px}
+  .buyer .tag{font-family:var(--mono);font-size:.78rem;color:var(--accent);letter-spacing:.06em;margin-bottom:18px;display:block}
+  .buyer p{color:var(--muted);font-size:.94rem;margin-bottom:20px}
+  .buyer ul{list-style:none}
+  .buyer ul li{
+    font-size:.85rem;color:var(--muted);padding:7px 0 7px 22px;position:relative;
+    border-top:1px dashed var(--border);
+  }
+  .buyer ul li::before{content:'—';position:absolute;left:0;color:var(--accent)}
+
+  /* ---------- why wins ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:70px}
+  .pillar{padding:40px 34px;border:1px solid var(--border);border-radius:4px;background:var(--surface)}
+  .pillar .icon{
+    width:46px;height:46px;border:1px solid var(--accent-border);border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);color:var(--accent);font-size:.7rem;letter-spacing:.1em;
+    margin-bottom:24px;background:var(--accent-soft);
+  }
+  .pillar h3{font-size:1.15rem;font-weight:700;margin-bottom:14px;letter-spacing:-.015em}
+  .pillar p{font-size:.9rem;color:var(--muted)}
+  .phrase-cloud{
+    border:1px solid var(--border);border-radius:4px;background:var(--surface);
+    padding:54px 40px;text-align:center;
+  }
+  .phrase-cloud .lbl{font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;color:var(--faint);text-transform:uppercase;margin-bottom:30px}
+  .phrases{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+  .phrases span{
+    font-family:var(--mono);font-size:.85rem;letter-spacing:.04em;
+    border:1px solid var(--border-strong);border-radius:20px;padding:10px 20px;color:var(--muted);
+    transition:border-color .2s,color .2s;
+  }
+  .phrases span:hover{border-color:var(--accent);color:var(--text)}
+
+  /* ---------- posture ---------- */
+  .posture{
+    background:linear-gradient(180deg,var(--surface) 0%,var(--bg) 100%);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    text-align:center;
+  }
+  .posture blockquote{
+    font-size:clamp(1.4rem,2.8vw,2.2rem);font-weight:700;letter-spacing:-.02em;
+    line-height:1.35;max-width:30ch;margin:0 auto 26px;
+  }
+  .posture blockquote em{font-style:normal;color:var(--accent)}
+  .posture cite{
+    font-style:normal;font-family:var(--mono);font-size:.75rem;letter-spacing:.22em;
+    color:var(--faint);text-transform:uppercase;
+  }
+
+  /* ---------- acquisition ---------- */
+  .acquire .panel{
+    background:var(--surface);border:1px solid var(--border-strong);border-radius:6px;
+    padding:70px 60px;text-align:center;position:relative;overflow:hidden;
+  }
+  .acquire .panel::before{
+    content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+    width:520px;height:240px;background:radial-gradient(ellipse,var(--accent-soft),transparent 70%);
+    pointer-events:none;
+  }
+  .acquire h2{max-width:none;margin-bottom:18px}
+  .acquire .lede{margin:0 auto 40px}
+  .acquire .fine{margin-top:26px;font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;color:var(--faint);text-transform:uppercase}
+
+  /* ---------- footer ---------- */
+  footer{padding:60px 0 50px;border-top:1px solid var(--border)}
+  .foot{display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap}
+  .foot .brand{font-size:1.1rem;margin-bottom:12px;display:inline-block}
+  .foot p{font-size:.82rem;color:var(--faint);max-width:44ch}
+  .foot nav{display:flex;gap:24px}
+  .foot nav a{font-size:.8rem;color:var(--muted);text-decoration:none}
+  .foot nav a:hover{color:var(--text)}
+  .copy{margin-top:44px;padding-top:24px;border-top:1px solid var(--border);
+    font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;color:var(--faint);
+    text-transform:uppercase;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* ---------- reveal ---------- */
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+
+  @media(max-width:960px){
+    .ops-grid{grid-template-columns:repeat(2,1fr)}
+    .pillars{grid-template-columns:1fr}
+    .buyer-grid{grid-template-columns:1fr}
+    .shift-grid{grid-template-columns:1fr;gap:40px}
+    .nav-links a.nav-item{display:none}
+    .acquire .panel{padding:50px 28px}
+    section{padding:80px 0}
+  }
+  @media(max-width:560px){
+    .ops-grid{grid-template-columns:1fr}
+    .cap-list{grid-template-columns:1fr}
+    .hero-meta div+div{border-left:none;padding-left:0}
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>🚀 Website Delta</h1>
-        <p>Welcome to your new website. This is a clean, modern starting point for your project.</p>
-        
-        <div class="features">
-            <div class="feature">
-                <h3>📱 Responsive</h3>
-                <p>Looks great on all devices and screen sizes</p>
-            </div>
-            <div class="feature">
-                <h3>⚡ Fast</h3>
-                <p>Optimized for performance and speed</p>
-            </div>
-            <div class="feature">
-                <h3>🎨 Modern</h3>
-                <p>Clean design with contemporary styling</p>
-            </div>
-            <div class="feature">
-                <h3>🔧 Easy to Customize</h3>
-                <p>Simple HTML structure for easy modifications</p>
-            </div>
-        </div>
-        
-        <div>
-            <a href="#" class="cta-button">Get Started</a>
-            <a href="https://github.com/garyramah/website-Delta" class="cta-button">View on GitHub</a>
-        </div>
-        
-        <footer>
-            <p>&copy; 2026 Website Delta. All rights reserved.</p>
-        </footer>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">war<em>.ai</em></a>
+    <div class="nav-links">
+      <a class="nav-item" href="#threat">Threat</a>
+      <a class="nav-item" href="#operations">Operations</a>
+      <a class="nav-item" href="#buyers">Buyers</a>
+      <a class="nav-item" href="#why">Why war.ai</a>
+      <a class="btn btn-accent btn-sm" href="https://mediaoptions.com" target="_blank" rel="noopener">Acquisition inquiries</a>
     </div>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <canvas id="net"></canvas>
+  <div class="hero-inner">
+    <div class="kicker">Agentic information warfare // situation brief</div>
+    <h1>The information battlefield is becoming <span class="strike">autonomous</span>.</h1>
+    <p class="sub">war.ai provides intelligence, governance, and defensive operations for the age of agentic influence, synthetic identity, and machine-speed information threats.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-accent" href="#threat">See the threat landscape</a>
+      <a class="btn btn-ghost" href="#buyers">Build resilient agents</a>
+      <a class="btn btn-ghost" href="#operations">Defend trusted information</a>
+    </div>
+    <div class="hero-meta">
+      <div><strong>Machine speed</strong>Reconnaissance → adaptation</div>
+      <div><strong>Full spectrum</strong>Detect · Attribute · Disrupt</div>
+      <div><strong>Posture</strong>Defensive by doctrine</div>
+    </div>
+  </div>
+</div>
+
+<section class="shift" id="threat">
+  <div class="wrap">
+    <div class="shift-grid">
+      <div class="rv">
+        <div class="sec-label">The shift</div>
+        <h2>Persuasive content got cheap. <span class="dim">Autonomous operations are the new center of gravity.</span></h2>
+        <p class="lede">As generative AI makes influence cheaper and more abundant, competition moves from content creation alone to <strong>autonomous operations</strong> — systems that plan, execute, measure, and optimize information campaigns across digital channels, with or without a human in the loop.</p>
+        <a class="btn btn-ghost" href="#operations">Explore the operational areas</a>
+      </div>
+      <ul class="cap-list rv">
+        <li><span>01</span>Reconnaissance</li>
+        <li><span>02</span>Audience segmentation</li>
+        <li><span>03</span>Persona coordination</li>
+        <li><span>04</span>Multilingual narrative adaptation</li>
+        <li><span>05</span>Distribution optimization</li>
+        <li><span>06</span>Trust exploitation</li>
+        <li><span>07</span>Social engineering</li>
+        <li><span>08</span>Feedback-driven refinement</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="operations">
+  <div class="wrap">
+    <div class="sec-label rv">Market definition</div>
+    <h2 class="rv">Agentic information warfare</h2>
+    <p class="lede rv">The contested environment in which AI agents autonomously — or semi-autonomously — plan, execute, measure, and optimize information operations across digital channels. The essential shift: <strong>from isolated manipulation to persistent, adaptive, feedback-driven operations.</strong></p>
+    <div class="ops-grid rv">
+      <div class="op">
+        <div class="n">OP-01</div>
+        <h3>Threat intelligence</h3>
+        <p>Detect coordinated narratives, synthetic identities, bot networks, manipulated media, and anomalous influence activity.</p>
+      </div>
+      <div class="op">
+        <div class="n">OP-02</div>
+        <h3>Autonomous research</h3>
+        <p>Map actors, audiences, information ecosystems, vulnerabilities, and emerging narratives.</p>
+      </div>
+      <div class="op">
+        <div class="n">OP-03</div>
+        <h3>Influence operations</h3>
+        <p>Generate localized content, manage persona networks, coordinate distribution, and adapt based on live responses.</p>
+      </div>
+      <div class="op">
+        <div class="n">OP-04</div>
+        <h3>Defensive operations</h3>
+        <p>Identify campaigns early, attribute likely sources, contain spread, harden targets, and inform responders.</p>
+      </div>
+      <div class="op">
+        <div class="n">OP-05</div>
+        <h3>Agent governance</h3>
+        <p>Apply authorization, provenance, identity, audit, policy, monitoring, and escalation controls to high-impact agents.</p>
+      </div>
+      <div class="op">
+        <div class="n">OP-06</div>
+        <h3>Simulation &amp; red teaming</h3>
+        <p>Model adversarial agent behavior and test organizational resilience before a real campaign occurs.</p>
+      </div>
+      <div class="op">
+        <div class="n">OP-07</div>
+        <h3>Information integrity</h3>
+        <p>Verify sources, establish content provenance, assess credibility, and protect trusted communication channels.</p>
+      </div>
+      <div class="op">
+        <div class="n">OP-08</div>
+        <h3>Decision support</h3>
+        <p>Provide a common operational picture for executives, security teams, government agencies, and public-interest institutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="questions">
+  <div class="wrap">
+    <div class="sec-label rv">Brand promise</div>
+    <h2 class="rv">Defend the information battlefield</h2>
+    <p class="lede rv">war.ai is the operating system, intelligence layer, research institution, or trusted command surface for organizations confronting autonomous information threats. A mature war.ai platform answers questions like these:</p>
+    <ul class="q-list rv">
+      <li>Which coordinated narratives are gaining traction against our organization, sector, or country?</li>
+      <li>Are these activities organic, coordinated, automated — or externally directed?</li>
+      <li>Which accounts, personas, channels, and media assets form the operational network?</li>
+      <li>What audiences are being targeted, and what vulnerabilities are being exploited?</li>
+      <li>How do we respond without amplifying a hostile narrative?</li>
+      <li>Which of our own AI agents hold access, authority, or external reach that requires controls?</li>
+      <li>Can we simulate this attack pattern before it becomes a live incident?</li>
+      <li>What evidence, attribution confidence, and audit trail support our response?</li>
+    </ul>
+  </div>
+</section>
+
+<section id="buyers">
+  <div class="wrap">
+    <div class="sec-label rv">Buyer positioning</div>
+    <h2 class="rv">One domain. Four strategic buyers.</h2>
+    <p class="lede rv">war.ai is not a feature name. It is a category boundary — <strong>conflict conducted through and against autonomous systems</strong> — broad enough to scale from a focused product into a platform, research institution, or operating standard.</p>
+    <div class="buyer-grid">
+      <div class="buyer rv">
+        <div class="num">POSITION — 01</div>
+        <h3>Defense &amp; national-security platform</h3>
+        <span class="tag">Intelligence · simulation · defensive operations</span>
+        <p>Autonomous agents are accelerating influence operations. Human-only monitoring cannot match machine-speed reconnaissance, production, distribution, and adaptation. war.ai gives defenders a continuously updated operational picture and governed response capability.</p>
+        <ul>
+          <li>Defense and intelligence organizations</li>
+          <li>National-security agencies</li>
+          <li>Allied governments and public-sector cyber programs</li>
+          <li>Election-security and civic-resilience organizations</li>
+          <li>Defense primes and systems integrators</li>
+        </ul>
+      </div>
+      <div class="buyer rv">
+        <div class="num">POSITION — 02</div>
+        <h3>Enterprise agent-security company</h3>
+        <span class="tag">Govern the agents before they become instruments</span>
+        <p>Enterprise agents increasingly research, communicate, recommend, transact, and act on behalf of organizations. They can be manipulated through adversarial content, prompt injection, compromised identities, poisoned knowledge sources, and coordinated narrative attacks. war.ai governs agent authority, validates information inputs, observes behavior, and provides evidence for intervention.</p>
+        <ul>
+          <li>Global enterprises and financial institutions</li>
+          <li>Healthcare and critical-infrastructure operators</li>
+          <li>Large technology platforms</li>
+          <li>Regulated organizations deploying external-facing agents</li>
+        </ul>
+      </div>
+      <div class="buyer rv">
+        <div class="num">POSITION — 03</div>
+        <h3>Information-integrity &amp; threat-intelligence platform</h3>
+        <span class="tag">See the system, not the artifacts</span>
+        <p>A campaign is no longer a few fake accounts or one viral post. It is a dynamic network of content, identities, distribution pathways, targeting logic, and feedback loops. war.ai helps analysts see the system rather than chase individual artifacts.</p>
+        <ul>
+          <li>Cybersecurity and threat-intelligence vendors</li>
+          <li>Trust-and-safety teams</li>
+          <li>Social and communications platforms</li>
+          <li>Brand-protection, reputation, and crisis-intelligence providers</li>
+        </ul>
+      </div>
+      <div class="buyer rv">
+        <div class="num">POSITION — 04</div>
+        <h3>Research, media &amp; policy institution</h3>
+        <span class="tag">The definitive publication of the autonomous-conflict age</span>
+        <p>The recognizable public venue for analysis of AI, conflict, autonomy, defense, deterrence, information integrity, and democratic resilience — a concise, authoritative form suited to reports, briefings, events, newsletters, and data products.</p>
+        <ul>
+          <li>AI-governance organizations</li>
+          <li>National-security research institutes</li>
+          <li>Policy think tanks and strategic-risk consultancies</li>
+          <li>High-end technology and geopolitics publications</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="why" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-label rv">Why war.ai wins</div>
+    <h2 class="rv">It names the problem, not a feature.</h2>
+    <p class="lede rv">Names like "AI Trust," "Agent Security," or "Narrative Intelligence" are descriptive but narrow. <strong>war.ai establishes the broader category boundary</strong> — and gives a buyer room to expand across agentic cyber operations, synthetic-identity detection, agent authorization and runtime governance, influence-threat intelligence, adversarial simulation, and institutional resilience.</p>
+    <div class="pillars">
+      <div class="pillar rv">
+        <div class="icon">P-1</div>
+        <h3>Category, not feature</h3>
+        <p>The strongest domains become shorthand for a market. war.ai can define the market for defensive infrastructure in the agentic era rather than competing inside someone else's.</p>
+      </div>
+      <div class="pillar rv">
+        <div class="icon">P-2</div>
+        <h3>Operational gravity</h3>
+        <p>"War" carries consequence. Used responsibly, it signals adversarial systems, contested trust, and high-impact decision environments — not casual marketing automation.</p>
+      </div>
+      <div class="pillar rv">
+        <div class="icon">P-3</div>
+        <h3>Category-brand potential</h3>
+        <p>Short enough to become a global brand. Broad enough to scale from product to platform to standard — the name people reach for when the threat is autonomous.</p>
+      </div>
+    </div>
+    <div class="phrase-cloud rv">
+      <div class="lbl">The war.ai lexicon</div>
+      <div class="phrases">
+        <span>the war.ai threat model</span>
+        <span>the war.ai dashboard</span>
+        <span>the war.ai index</span>
+        <span>the war.ai briefing</span>
+        <span>the war.ai control plane</span>
+        <span>the war.ai standard</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="posture">
+  <div class="wrap rv">
+    <div class="sec-label" style="justify-content:center">Doctrine</div>
+    <blockquote>war.ai does not romanticize conflict. It gives institutions the <em>intelligence, controls, and resilience</em> needed to prevent autonomous systems from escalating it.</blockquote>
+    <cite>Defensive posture · Human oversight · Responsible deterrence</cite>
+  </div>
+</section>
+
+<section class="acquire">
+  <div class="wrap">
+    <div class="panel rv">
+      <div class="sec-label" style="justify-content:center">Strategic asset</div>
+      <h2>A category-defining domain for the defense layer of the agentic era.</h2>
+      <p class="lede">war.ai is the defining domain for the rapidly emerging market of agentic information warfare and autonomous defense — intelligence, detection, simulation, governance, and resilience against AI-enabled influence operations, synthetic personas, coordinated narrative attacks, adversarial agents, and machine-speed social engineering.</p>
+      <a class="btn btn-accent" href="https://mediaoptions.com" target="_blank" rel="noopener">Inquire about acquisition</a>
+      <div class="fine">Exclusive brokerage · MediaOptions</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top">war<em>.ai</em></a>
+        <p>Defensive AI · Information integrity · Agent governance · Coordinated-threat intelligence · Resilience · Attribution · Provenance · Trust infrastructure.</p>
+      </div>
+      <nav>
+        <a href="#threat">Threat</a>
+        <a href="#operations">Operations</a>
+        <a href="#buyers">Buyers</a>
+        <a href="#why">Why war.ai</a>
+      </nav>
+    </div>
+    <div class="copy">
+      <span>war.ai — defend the information battlefield</span>
+      <span>Acquisition via exclusive broker</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const c = document.getElementById('net'), ctx = c.getContext('2d');
+  let W, H, nodes = [], threats = [];
+  const N = 90;
+  function resize(){
+    W = c.width = c.offsetWidth; H = c.height = c.offsetHeight;
+  }
+  function spawn(){
+    nodes = [];
+    for(let i=0;i<N;i++){
+      nodes.push({
+        x: Math.random()*W, y: Math.random()*H,
+        vx: (Math.random()-.5)*.35, vy: (Math.random()-.5)*.35,
+        r: Math.random()*1.6+.8
+      });
+    }
+    threats = nodes.slice(0,7);
+  }
+  resize(); spawn();
+  window.addEventListener('resize', ()=>{ resize(); spawn(); });
+  let t = 0;
+  function tick(){
+    t += .016;
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<nodes.length;i++){
+      const a = nodes[i];
+      a.x += a.vx; a.y += a.vy;
+      if(a.x<0||a.x>W) a.vx*=-1;
+      if(a.y<0||a.y>H) a.vy*=-1;
+      for(let j=i+1;j<nodes.length;j++){
+        const b = nodes[j], dx=a.x-b.x, dy=a.y-b.y, d=Math.hypot(dx,dy);
+        if(d<150){
+          ctx.strokeStyle = 'rgba(255,255,255,'+(0.07*(1-d/150)).toFixed(3)+')';
+          ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+        }
+      }
+    }
+    for(const n of nodes){
+      ctx.fillStyle = 'rgba(255,255,255,.5)';
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,7); ctx.fill();
+    }
+    for(const n of threats){
+      const p = (Math.sin(t*2 + n.x)+1)/2;
+      const pr = n.r + 4 + p*14;
+      const g = ctx.createRadialGradient(n.x,n.y,n.r,n.x,n.y,pr);
+      g.addColorStop(0,'rgba(229,72,77,'+(0.5*(1-p*0.6)).toFixed(3)+')');
+      g.addColorStop(1,'rgba(229,72,77,0)');
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(n.x,n.y,pr,0,7); ctx.fill();
+      ctx.fillStyle = '#e5484d';
+      ctx.beginPath(); ctx.arc(n.x,n.y,n.r+1,0,7); ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
+
+(function(){
+  const els = document.querySelectorAll('.rv');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
 </body>
 </html>
